@@ -42,6 +42,14 @@ _.compact = function(array) {
 
   return array.filter(Boolean);
 
+  for ( let i = 0; i < array.length; i++ ) {
+    if ( !array[i] ){
+      output.push(array[i]);
+    }
+  }
+
+  console.log("output>>>",output)
+  return output;
 };
 
 // 6. Returns a new array of elements in the first argument, but
