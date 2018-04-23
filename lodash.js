@@ -6,7 +6,7 @@ let _ = {};
 
  // 1. Returns the first element of an array.
 _.first = function(array) {
-  if (array.length === 0) {
+  if(array.length === 0) {
     return 0;
   }
     return array[0];
@@ -14,7 +14,7 @@ _.first = function(array) {
 
  // 2. Returns the first n number of elements in an array.
 _.take = function(array, n) {
-  if (!n) {
+  if(!n) {
     n = 1;
   }
 	 return array.slice(0, n);
@@ -27,7 +27,10 @@ _.last = function(array) {
 
 // 4. Returns the last n number of elements in an array.
 _.takeRight = function(array,n) {
-	//not sure how to proceed, saved for later
+  if(!n) {
+    n = 1;
+}
+  return array.slice(array.length - n);
 };
 
 // 5. Returns a new array with all falsey values removed.
@@ -48,31 +51,50 @@ _.compact = function(array) {
 // → [1, 3]
 _.difference = function(arrayOne, arrayTwo) {
     let newArray = [];
-    for (let i = 0; i < arrayOne.length; i++) {
+    for(let i = 0; i < arrayOne.length; i++) {
       let element = arrayOne[i];
 
-    if ( arrayTwo/indexOf(elemen) === -1) {
-
+    if(arrayTwo.indexOf(element) === -1) {
+      newArray.push(element);
     }
   }
+  return newArray;
 };
 
 // 7. Returns element with minimum
 // value in an array.
 _.min = function(array) {
-  //Math.ceil or Math.floor?
+  let min = array[0];
+    for(let i = 0; i < array.length; i++) {
+      let element = array[i];
+    if(element < min) {
+        min = element;
+    }
+  }
+  return min;
 };
 
 // 8. Returns element with maximum
 // value in an array.
 _.max = function(array) {
-
+  let max = 0;
+  for(let i = 0; i < array.length; i++) {
+    if(array[i] > max) {
+      max = array[i];
+    }
+  }
+  return max;
 };
 
 // 9. Returns either index of matched element or
 // -1.
 _.indexOf = function(array, el) {
-	// Place your solution here
+	for(let i = 0; i < array.length; i++) {
+    if (el === array[i]) {
+      return i;
+    }
+  }
+  return -1;
 };
 
 /*************** BONUS ***************/
@@ -81,7 +103,7 @@ _.indexOf = function(array, el) {
 _.shuffle = function(array) {
   //Wendell's shuffle solution
   let shuffled = [];
-  for (let i = array.length-1; i >= 0; i--) {
+  for(let i = array.length-1; i >= 0; i--) {
     let roll = math.floor(math.random() * (i));
     shuffled.push(array[roll]);
     array[roll] = array[array.length-1];
@@ -97,7 +119,7 @@ _.shuffle = function(array) {
 //Priscilla's Solution.
 _.size = function(collection) {
   if(typeof collection === 'object') {
-    return object.values(collection).length;
+    collection = Object.values(collection);
   }
   return collection.length;
 };
@@ -105,18 +127,35 @@ _.size = function(collection) {
 // 12. Iterates on each element of a collection and
 // then returns the original collection.
 _.forEach = function(collection, callback) {
-	// Place your solution here
+  if(typeof collection === 'string' || Array.isArray(collection)) {
+    for(let i = 0; i < collection.length; i++) {
+      callback(collection[i]);
+    }
+  } else {
+    for(let key in collection) {
+      callback(collection[key]);
+    }
+  }
 };
 
 // 13. Iterates on each element of a collection and
 // then returns a new array.
 _.map = function(collection, callback) {
-	// Place your solution here
+  let newArray = [];
+  _.forEach(collection, function(el) {
+    newArray.push(callback(el));
+  });
+  return newArray;
 };
 
 // 14. Returns a new collection with filtered elements.
 _.filter = function(collection, callback) {
-	// Place your solution here
+  let filteredArray = [];
+  _.forEach(collection, function(element) {
+    if(callback(element));
+    filteredArray.push(element);
+  });
+  return filteredArray;
 };
 
 // 15. Returns a new collection with unfiltered elements.
