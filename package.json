@@ -17,9 +17,9 @@
   "author": "Cho S. Kim",
   "license": "MIT",
   "devDependencies": {
-    "gulp": "^3.9.0",
-    "gulp-eslint": "^1.0.0",
-    "gulp-mocha": "^2.1.3",
-    "mocha": "^2.4.5"
+    "gulp": "^4.0.0",
+    "gulp-eslint": "^5.0.0",
+    "gulp-mocha": "^6.0.0",
+    "mocha": "^5.2.0"
   }
 }
